@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "GUcQCOnUp637JQwMiLg3pq0no9mq9KNGHwn1xd7cGgrBKhmPADLjLAemO67MI+kA3+VSxcOuJm9wsZoJMylGXg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\muhammad.sajid\\Source\\Repos\\google-reCaptcha-using-blazor-webassembly-and-.Net-core-API\\API_Project\\API_Project.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\muhammad.sajid\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.14\\microsoft.netcore.app.host.win-x64.3.1.14.nupkg.sha512"
+  ],
+  "logs": []
+}

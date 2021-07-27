@@ -1,0 +1,52 @@
+﻿@page "/"
+@using  System.ComponentModel
+@inject IJSRuntime JS;
+
+<h3>reCAPTCHA</h3>
+
+
+<div id="recaptcha_container"></div>
+
+<button type="button" class="btn btn-primary" @onclick="ShowResponse">Show Response</button>
+
+<br />
+
+@reCAPTCHA_response
+
+@code {
+    private int WidgetId;
+
+    public string reCAPTCHA_response;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JS.InvokeVoidAsync("loadScript", "https://www.google.com/recaptcha/api.js");
+
+        await JS.InvokeVoidAsync("loadScript", "Scripts/JsOfReCAPTCHA.js");
+
+        if (firstRender)
+        {
+            WidgetId = await JS.InvokeAsync<int>("render_recaptcha", DotNetObjectReference.Create(this), "recaptcha_container", "6Lfow74bAAAAAJv46QYbeh0_aOarB20zALyKI4at");
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    [JSInvokable, EditorBrowsable(EditorBrowsableState.Never)]
+    public void CallbackOnSuccess(string response)
+    {
+        reCAPTCHA_response = response;
+    }
+
+    [JSInvokable, EditorBrowsable(EditorBrowsableState.Never)]
+    public void CallbackOnExpired()
+    {
+        //...
+    }
+
+
+    private void ShowResponse()
+    {
+        reCAPTCHA_response = reCAPTCHA_response.ToString();
+    }
+}
